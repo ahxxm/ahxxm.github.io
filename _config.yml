@@ -8,7 +8,7 @@
 # Site settings
 title: ahxxm's blog
 email: i@ahxxm.com
-description: > # this means to ignore newlines until "baseurl:"
+description: > # this means to ignore newlines until "baseurl:" .. description is never used, check hard-coded footer.html
     init description
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://blog.ahxxm.com" # the base hostname & protocol for your site
