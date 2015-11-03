@@ -1,113 +1,137 @@
 ---
-ID: 114
-post_title: 搭一个好用的Tiny Tiny RSS
+title: 搭一个好用的Tiny Tiny RSS
 author: ahxxm
-post_date: 2015-03-08 22:51:31
-post_excerpt: ""
 layout: post
-permalink: https://ahxxm.com/114.moew
-published: true
+permalink: /114.moew
+categories:
+  - 不要问我为什么写这个
 ---
 前阵子发现Feedly会自动清理60天以上的条目，在OSX上用Tiny Tiny RSS搭了个服务器，运行良好。昨天发现 <a href="https://twitter.com/Zeove" target="_blank">@Zeove</a> 也在用这货，他用的是虚拟主机，问我这货是否会很耗资源。我发现本地数据库12000多条，不缓存图片141M，可接受，便将其转至VPS上并加以配置。
 
 这是前言，刚好140字，不信你粘贴到发推的文本框里。
 
 配置好后，我以“Tiny Tiny RSS 配置”为关键词，在Google上爬了几页，发现文章大同小异，没有解决我的问题。所以有了此文：
-<ul>
-	<li>一键安装LNMP——用别人的轮子；</li>
-	<li>修改nginx端口，禁止MySQL远程访问——可选项，只是顺手；</li>
-	<li>安装插件：解决绝大多数RSS源解析问题，并可用Reeder、Press等App同步——也就不用折腾皮肤了；</li>
-</ul>
+
+  * 一键安装LNMP——用别人的轮子；
+  * 修改nginx端口，禁止MySQL远程访问——可选项，只是顺手；
+  * 安装插件：解决绝大多数RSS源解析问题，并可用Reeder、Press等App同步——也就不用折腾皮肤了；
+
 <!--more-->
 
-<strong>1. LNMP和tt-rss</strong>
+**1. LNMP和tt-rss**
 
 假设你用的也是Debian：
-<blockquote>apt-get update
 
-apt-get upgrade
+> apt-get update
+> 
+> apt-get upgrade
+> 
+> wget http://soft.vpser.net/lnmp/lnmp1.1.tar.gz
+> 
+> tar zxvf lnmp*
+> 
+> cd lnmp1.1/
+> 
+> ./debian.sh
 
-wget http://soft.vpser.net/lnmp/lnmp1.1.tar.gz
-
-tar zxvf lnmp*
-
-cd lnmp1.1/
-
-./debian.sh</blockquote>
 不出意外这时候LNMP已经可以用了，出意外不关我事。
 
-<strong>1.1 修改nginx端口，禁止MySQL远程访问</strong>
-<blockquote>vim /usr/local/nginx/conf/nginx.conf</blockquote>
+**1.1 修改nginx端口，禁止MySQL远程访问**
+
+> vim /usr/local/nginx/conf/nginx.conf
+
 找到server{ listen 80 default} ，把80改成一个奇怪的端口，比如……不比如。
 
 再：
-<blockquote>vim /etc/my.conf</blockquote>
+
+> vim /etc/my.conf
+
 在[mysqld]下面加上一行：
-<blockquote>bind-address=127.0.0.1</blockquote>
+
+> bind-address=127.0.0.1
+
 然后：
-<blockquote>~/lnmp restart</blockquote>
+
+> ~/lnmp restart
+
 或者依次service restart，验证是否成功：
-<blockquote>netstat -atl | grep localhost</blockquote>
+
+> netstat -atl | grep localhost
+
 如果有 localhost:mysql 和其他应该出现的东西就对了。
 
 再顺手删掉探针和欢迎页面：
-<blockquote>cd /home/wwwroot/default
 
-rm -rf *</blockquote>
+> cd /home/wwwroot/default
+> 
+> rm -rf *
+
 就可以开始了。
 
-<strong>2. tt-rss</strong>
+**2. tt-rss**
 
 此时我们已经到了网站目录下，默认配置是禁止列出文件的，所以……
 
 根据tt-rss<a href="http://tt-rss.org/redmine/projects/tt-rss/wiki/InstallationNotes" target="_blank">官方安装文档</a>：
-<blockquote>git clone https://github.com/gothfox/Tiny-Tiny-RSS.git tt-rss</blockquote>
+
+> git clone https://github.com/gothfox/Tiny-Tiny-RSS.git tt-rss
+
 把后面的tt-rss改成你想要的文件夹名字，可以防普通爬虫，不可以防我党。
 
 假设你改成了wtfrss。
 
 给权限，然后进MySQL创建个数据库，叫做rss：
-<blockquote>chown -R 777 wtfrss
 
-mysql -proot
+> chown -R 777 wtfrss
+> 
+> mysql -proot
+> 
+> create database rss;
+> 
+> exit;
 
-create database rss;
-
-exit;</blockquote>
 根据官方文档或者<a href="http://www.freehao123.com/tiny-tiny-rss/" target="_blank">这个翻译版</a>输入配置信息，理论上它会自动生成config.php然后告诉你可以用了。
 
-我当时似乎出了点意外，没有给777，得手动复制信息和创建，得出药丸如下：vim党如果发现copy&amp;paste时候indent不对，就在.vimrc里把filetype相关的行注释掉再操作，包治。
+我当时似乎出了点意外，没有给777，得手动复制信息和创建，得出药丸如下：vim党如果发现copy&paste时候indent不对，就在.vimrc里把filetype相关的行注释掉再操作，包治。
 
-默认登录信息为admin&amp;password，进去后右上角操作-&gt;Preferences-&gt;Personal data，在这里改个密码。
+默认登录信息为admin&password，进去后右上角操作->Preferences->Personal data，在这里改个密码。
 
-<strong>3. 插件：xmllint解析更多RSS源，Fever支持Reeder和Press</strong>
+**3. 插件：xmllint解析更多RSS源，Fever支持Reeder和Press**
 
-下一栏“偏好设置”中，<strong>打开API访问</strong>，下面的 Purge articles after this number of days (0 - disables) 设置为0、表示不清理任何远古条目，点保存设置。
+下一栏“偏好设置”中，**打开API访问**，下面的 Purge articles after this number of days (0 &#8211; disables) 设置为0、表示不清理任何远古条目，点保存设置。
 
-点“插件”，开了的不要管，没开的af_fsckportal af_unburn这两个打开，点Enable selected plugins。如果你也色弱，分不清这个开没开，把屏幕亮度调成最高就好了。
+点“插件”，开了的不要管，没开的af\_fsckportal af\_unburn这两个打开，点Enable selected plugins。如果你也色弱，分不清这个开没开，把屏幕亮度调成最高就好了。
 
-<strong>3.1 xmllint</strong>
+**3.1 xmllint**
 
 项目地址是<a href="https://github.com/fastcat/tt-rss-ff-xmllint" target="_blank">这里</a>，理论上可以git clone后直接make install，不过我这dpkg有点问题，手动完成的。
-<blockquote>apt-get install tidy libxml2-utils
 
-再git clone，把文件夹移动到wtfrss/plugins/里去。</blockquote>
+> apt-get install tidy libxml2-utils
+> 
+> 再git clone，把文件夹移动到wtfrss/plugins/里去。
+
 chown -R 777之。进设置，两个选项都enable，save。
 
-<strong>3.2 Fever</strong>
+**3.2 Fever**
 
 项目地址是<a href="https://github.com/dasmurphy/tinytinyrss-fever-plugin" target="_blank">这(na)里</a>，安装原理同上，移至plugin，chown给权限，设置个密码。
 
-装好后在Reeder&amp;Press中添加custom server：
-<blockquote>http://[ip_address]:[port]/wtfrss/plugins/fever/</blockquote>
+装好后在Reeder&Press中添加custom server：
+
+> http://[ip_address]:[port]/wtfrss/plugins/fever/
+
 就算成功了，这时候你也看不到任何条目。
 
-<strong>4. 定时更新</strong>
+**4. 定时更新**
 
 假设你已经导入了OPML，而且不想按照这些奇怪教程里说的每次打开时才刷新（想看个RSS还得手动触发，图啥？）：
-<blockquote>crontab -e</blockquote>
+
+> crontab -e
+
 在底下加上
-<blockquote>0 * * * * su -m nobody -c "/usr/bin/php /home/wwwroot/default/[WAT]/update.php --feeds --quiet"</blockquote>
+
+> 0 \* \* \* \* su -m nobody -c &#8220;/usr/bin/php /home/wwwroot/default/[WAT]/update.php &#8211;feeds &#8211;quiet&#8221;
+
 其中[WAT]为你给tt-rss文件夹取的名字，这样它就会整点更新。
 
 后台那个更新时间其实是“过期时间”，超过此时长的被标记为需要更新，具体机制完全没必要了解。
