@@ -11,7 +11,7 @@ email: i@ahxxm.com
 description: > # this means to ignore newlines until "baseurl:" .. description is never used, check hard-coded footer.html
     init description
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://blog.ahxxm.com" # the base hostname & protocol for your site
+url: "https://ahxxm.com" # the base hostname & protocol for your site
 twitter_username: ahxxm
 github_username:  ahxxm
 
