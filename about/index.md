@@ -1,5 +1,5 @@
 ---
-title: 关于我
+title: About
 author: ahxxm
 layout: page
 ---
