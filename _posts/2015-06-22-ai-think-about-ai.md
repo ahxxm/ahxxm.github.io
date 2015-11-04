@@ -2,7 +2,7 @@
 title: 我对客服的一点要求
 author: ahxxm
 layout: post
-permalink: /138.moew
+permalink: /138.moew/
 categories:
   - 不要问我为什么写这个
 ---

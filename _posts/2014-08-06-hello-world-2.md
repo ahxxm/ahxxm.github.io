@@ -2,7 +2,7 @@
 title: Hello World
 author: ahxxm
 layout: post
-permalink: /7.moew
+permalink: /7.moew/
 categories:
   - 未分类
 ---
