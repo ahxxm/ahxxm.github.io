@@ -2,7 +2,7 @@
 title: 竞争对手这回事儿
 author: ahxxm
 layout: post
-permalink: /98.moew
+permalink: /98.moew/
 categories:
   - 不要问我为什么写这个
 ---

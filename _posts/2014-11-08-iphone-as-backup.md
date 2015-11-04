@@ -2,7 +2,7 @@
 title: iPhone是个好备胎
 author: ahxxm
 layout: post
-permalink: /77.moew
+permalink: /77.moew/
 categories:
   - 不要问我为什么写这个
 ---

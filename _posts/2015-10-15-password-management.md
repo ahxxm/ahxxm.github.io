@@ -2,7 +2,7 @@
 title: 个人密码管理
 author: ahxxm
 layout: post
-permalink: /149.moew
+permalink: /149.moew/
 categories:
   - 不是什么软文
   - 安全

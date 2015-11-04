@@ -2,7 +2,7 @@
 title: 用Tarsnap备份VPS
 author: ahxxm
 layout: post
-permalink: /146.moew
+permalink: /146.moew/
 categories:
   - 不要问我为什么写这个
 ---

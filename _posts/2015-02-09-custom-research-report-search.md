@@ -2,7 +2,7 @@
 title: 研究报告搜索引擎
 author: ahxxm
 layout: post
-permalink: /107.moew
+permalink: /107.moew/
 categories:
   - 不要问我为什么写这个
 ---

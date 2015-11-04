@@ -2,7 +2,7 @@
 title: 用ImageMagick将PDF转换为图片
 author: ahxxm
 layout: post
-permalink: /109.moew
+permalink: /109.moew/
 categories:
   - 不要问我为什么写这个
 ---

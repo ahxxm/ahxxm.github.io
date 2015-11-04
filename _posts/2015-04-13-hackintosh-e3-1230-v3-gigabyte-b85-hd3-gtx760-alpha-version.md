@@ -2,7 +2,7 @@
 title: 'Hackintosh: E3-1230 V3 + Gigabyte B85-HD3 + Inno3D GTX 760 (alpha version)'
 author: ahxxm
 layout: post
-permalink: /126.moew
+permalink: /126.moew/
 categories:
   - 未分类
 ---

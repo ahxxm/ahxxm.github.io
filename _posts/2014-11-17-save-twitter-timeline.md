@@ -2,7 +2,7 @@
 title: 备份你的Twitter和微博时间线
 author: ahxxm
 layout: post
-permalink: /89.moew
+permalink: /89.moew/
 categories:
   - 不要问我为什么写这个
 ---

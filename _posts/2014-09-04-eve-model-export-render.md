@@ -2,7 +2,7 @@
 title: EVE模型导出渲染指南
 author: ahxxm
 layout: post
-permalink: /40.moew
+permalink: /40.moew/
 categories:
   - 我也不知道为什么要写这个
 ---

@@ -2,7 +2,7 @@
 title: '统计稿件字数并自动生成带文章链接的xls文件 for TECH2IPO&#038;创之'
 author: ahxxm
 layout: post
-permalink: /57.moew
+permalink: /57.moew/
 categories:
   - 不要问我为什么写这个
 ---
