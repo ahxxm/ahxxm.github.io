@@ -77,7 +77,7 @@ categories:
   * 正规操作系统中没有内置键盘记录软件
   * 假设你能记住两个或以上的左右高强度密码
 
-Update: 根据[这篇博文](http://myers.io/2015/10/22/1password-leaks-your-data/)，1Password似乎会明文存储，不过我认识的apple fan boy都不在意这一点……
+Update: 根据[这篇博文](http://myers.io/2015/10/22/1password-leaks-your-data/)，1Password 似乎会明文存储，不过我认识的 apple fan boy 都不在意这一点……
 
 ## 该做什么
 
