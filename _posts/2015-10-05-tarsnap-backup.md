@@ -9,8 +9,8 @@ categories:
 
 备份不一定安全，不备份也不一定不安全，但是花了钱肯定开心，所以有此文。
 
-  Tarsnap的技术细节可以在[这里](http://www.daemonology.net/blog/2008-12-14-how-tarsnap-uses-aws.html)看到，简而言之：加密、增量、压缩的备份服务，有一个还比较好用的备份/还原命令。</p> 
-  
+Tarsnap的技术细节可以在[这里](http://www.daemonology.net/blog/2008-12-14-how-tarsnap-uses-aws.html)看到，简而言之：加密、增量、压缩的备份服务，有一个还比较好用的备份/还原命令。
+
 ## 效果
 
 第一次全盘备份：我的VPS磁盘用了5.5G，去除不必要备份的文件夹之后4G多点，Tarsnap认为unique data只有3G多点，压缩后是1G出头。这1G出头就是……大概0.25刀每个月。
@@ -66,6 +66,7 @@ categories:
     exclude /run
     exclude /var/swap.img
     exclude /sys
+    exclude /tmp
     # my kernel build folder..
     exclude /root/mod
     include /
