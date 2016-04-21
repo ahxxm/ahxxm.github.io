@@ -42,22 +42,14 @@ Tarsnap的技术细节可以在[这里](http://www.daemonology.net/blog/2008-12-
 
 改一下邮箱地址和机器名称，运行后会让你输入tarsnap的密码。这时候可以先交点钱，比如10刀。然后把key备份到你觉得安全的地方，因为一旦丢失备份的数据也就解密不了了。
 
-另一部分是修改默认备份配置，把一些不需要备份的文件夹排除掉，创建文件/usr/local/etc/tarsnap.conf：
+另一部分是修改默认备份配置，把一些不需要备份的文件夹排除掉，创建文件`/usr/local/etc/tarsnap.conf`：
 
-    # Tarsnap cache directory
     cachedir /usr/local/tarsnap-cache
-    
-    # Tarsnap key file
     keyfile /root/tarsnap.key
-
-    # Don't archive files which have the nodump flag set
     nodump
-
-    # Print statistics when creating or deleting archives
     print-stats
-
-    # Create a checkpoint once per 0.1GB of uploaded data.
-    checkpoint-bytes 0.1G
+    checkpoint-bytes 1G
+    humanize-numbers
 
     # Exclude and include folder/files
     exclude /proc
