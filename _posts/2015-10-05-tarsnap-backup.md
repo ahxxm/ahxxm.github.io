@@ -57,6 +57,7 @@ Tarsnap的技术细节可以在[这里](http://www.daemonology.net/blog/2008-12-
     exclude /dev
     exclude /run
     exclude /var/swap.img
+    exclude /var/lib/docker
     exclude /sys
     exclude /tmp
     # my kernel build folder..
