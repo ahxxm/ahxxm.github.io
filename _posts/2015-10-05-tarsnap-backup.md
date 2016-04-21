@@ -9,7 +9,7 @@ categories:
 
 备份不一定安全，不备份也不一定不安全，但是花了钱肯定开心，所以有此文。
 
-  Tarsnap的技术细节可以在<a href="http://www.daemonology.net/blog/2008-12-14-how-tarsnap-uses-aws.html" target="_blank">这里</a>看到，简而言之：加密、增量、压缩的备份服务，有一个还比较好用的备份/还原命令。</p> 
+  Tarsnap的技术细节可以在[这里](http://www.daemonology.net/blog/2008-12-14-how-tarsnap-uses-aws.html)看到，简而言之：加密、增量、压缩的备份服务，有一个还比较好用的备份/还原命令。</p> 
   
 ## 效果
 
@@ -27,18 +27,18 @@ categories:
 
 然后用默认配置编译安装tarsnap：
 
-    wget <a href="https://www.tarsnap.com/download/tarsnap-autoconf-1.0.36.1.tgz">https://www.tarsnap.com/download/tarsnap-autoconf-1.0.36.1.tgz</a>
-    tar xf tarsnap-autoconf-1.0.36.1.tgz
-    cd tarsnap-autoconf-1.0.36.1
+    wget https://www.tarsnap.com/download/tarsnap-autoconf-1.0.37.tgz
+    tar xf tarsnap-autoconf-1.0.37.tgz
+    cd tarsnap-autoconf-1.0.37/
     ./configure
     make all
     make install
 
 ## 配置
 
-配置分两部分，一个是<a href="https://www.tarsnap.com/gettingstarted.html" target="_blank">生成加密用的key</a>：
+配置分两部分，一个是[生成加密用的key](https://www.tarsnap.com/gettingstarted.html)：
 
-    tarsnap-keygen –keyfile /root/tarsnap.key –user me@example.com –machine machine-name
+    tarsnap-keygen --keyfile /root/tarsnap.key --user me@example.com --machine machine-name
 
 改一下邮箱地址和机器名称，运行后会让你输入tarsnap的密码。这时候可以先交点钱，比如10刀。然后把key备份到你觉得安全的地方，因为一旦丢失备份的数据也就解密不了了。
 
@@ -56,8 +56,8 @@ categories:
     # Print statistics when creating or deleting archives
     print-stats
 
-    # Create a checkpoint once per GB of uploaded data.
-    checkpoint-bytes 1G
+    # Create a checkpoint once per 0.1GB of uploaded data.
+    checkpoint-bytes 0.1G
 
     # Exclude and include folder/files
     exclude /proc
@@ -66,13 +66,15 @@ categories:
     exclude /run
     exclude /var/swap.img
     exclude /sys
+    # my kernel build folder..
+    exclude /root/mod
     include /
 
 这里（匹配顺序要求）exclude和include不能反，swap是交换分区的文件，如果你的交换分区路径不一样记得修改。
 
 ## 定时备份
 
-创建一个<a href="https://www.tarsnap.com/simple-usage.html" target="_blank">长成这样</a>的 /root/tarsnap-backup.sh :
+创建一个[长成这样](https://www.tarsnap.com/simple-usage.html)的 `/root/tarsnap-backup.sh`:
 
     #!/bin/sh
     /usr/local/bin/tarsnap -c \
@@ -87,7 +89,7 @@ chmod +x之，然后在crontab里加上：
 
 ## 测试
 
-开tmux跑一下/root/tarsnap-backup.sh，再tarsnap &#8211;list-archives | sort即可。
+开tmux跑一下/root/tarsnap-backup.sh，再`tarsnap list-archives | sort`即可。
 
 配置文件中写了nodump，所以本地是看不到备份的……
 
