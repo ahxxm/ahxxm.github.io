@@ -6,7 +6,7 @@ permalink: /107.moew/
 categories:
   - 不要问我为什么写这个
 ---
-<a href="https://www.google.com/cse/publicurl?cx=017848037225353902041:95gys5xph9k" target="_blank">点击链接</a>进行搜索……
+<a href="https://cse.google.com/cse/publicurl?cx=002622208273261683290:s-0yqdyhasu" target="_blank">点击链接</a>进行搜索……
 
 用 Google 的 Custom Search Engine 做了个研究报告搜索引擎，目前搜索范围是：
 
