@@ -1,17 +1,8 @@
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
-    <title>
-      {% if page.title %}
-        {{ page.title }} | {{ site.title }}
-      {% else %}
-        {{ site.title }}
-      {% endif %}
-    </title>
-
+    <title>{% if page.title %} {{ page.title }} | {{ site.title }} {% else %} {{ site.title }} {% endif %}</title>
     <meta name="author" content="{{ site.author }}" />
 
     <!-- Description -->
@@ -20,9 +11,6 @@
     {% else %}
       <meta name="description" content="{{ site.description }}">
     {% endif %}
-
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
@@ -44,8 +32,6 @@
       link.href = window.location.search.match( /print-pdf/gi ) ? '{{ "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/css/print/pdf.css" | prepend: site.baseurl }}' : '{{ "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/css/print/paper.css" | prepend: site.baseurl }}';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
-
-    <link rel="apple-touch-icon" href="{{ "/apple-touch-icon.png" | prepend: site.baseurl }}" />
 
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
@@ -72,6 +58,8 @@
         progress: true,
         history: true,
         center: true,
+        keyboard: true,
+        overview: true,
         {%if page.transition %}
           transition: '{{page.transition}}',
         {% else %}
@@ -84,7 +72,8 @@
           { src: '{{ "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/markdown/markdown.js" | prepend: site.baseurl }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: '{{ "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/highlight/highlight.js" | prepend: site.baseurl }}', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: '{{ "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/zoom-js/zoom.js" | prepend: site.baseurl }}', async: true },
-          { src: '{{ "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/notes/notes.js" | prepend: site.baseurl }}', async: true }
+          { src: '{{ "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/notes/notes.js" | prepend: site.baseurl }}', async: true },
+          { src: '{{ "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/math/math.js" | prepend: site.baseurl }}', async: true }
         ]
       });
     </script>
