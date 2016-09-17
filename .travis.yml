@@ -1,0 +1,3 @@
+script:
+  - npm install -g markdown-spellcheck
+  - mdspell "_posts/*-en.md" -r
