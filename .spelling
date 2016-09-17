@@ -14,8 +14,6 @@ LUKS
 TODO
 Refs
 XPS
-15
-9550
 LTS
 NVMe
 OpenRC
@@ -27,7 +25,6 @@ FastBoot
 rufus
 rdisk
 512G
-3
 1G
 Pacstrap
 Timezone
@@ -36,9 +33,7 @@ adminCD
 wpa-supplicant
 wpa
 _passphrase
-4.5.1
 BCM43602
-2016.04.19
 Mod4
 unmute
 Fn
@@ -47,7 +42,6 @@ Synaptics
 i3wm
 Infinality
 LightDM
-2
 i3status
 IPV6
 i3lock
@@ -71,7 +65,6 @@ EXT4
 mappedfs
 bootctl
 fstab
-2
 ibus-rime
 Reveal.js
 slides.com
