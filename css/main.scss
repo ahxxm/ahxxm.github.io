@@ -12,7 +12,7 @@ $font-path: {{ site.baseurl }}/css/$font-name;
     font-family: zh_CN;
     src: url($font-path+'.eot') format('eot');
     src: url($font-path+'.woff') format('woff'),
-         url($font-path+'.ttf') format('ttf');
+         url($font-path+'.ttf') format('truetype');
 }
 
 // Variables
