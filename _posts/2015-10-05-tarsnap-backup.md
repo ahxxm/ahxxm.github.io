@@ -66,6 +66,8 @@ Tarsnap的技术细节可以在[这里](http://www.daemonology.net/blog/2008-12-
 
 这里（匹配顺序要求）exclude和include不能反，swap是交换分区的文件，如果你的交换分区路径不一样记得修改。
 
+Archlinux的系统日志文件会越来越大，通过`journalctl --vacuum-size=500M`来[限制](http://unix.stackexchange.com/questions/139513/how-to-clear-journalctl)。
+
 ## 定时备份
 
 创建一个[长成这样](https://www.tarsnap.com/simple-usage.html)的 `/root/tarsnap-backup.sh`:
