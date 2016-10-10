@@ -60,8 +60,13 @@ Tarsnap的技术细节可以在[这里](http://www.daemonology.net/blog/2008-12-
     exclude /var/lib/docker
     exclude /sys
     exclude /tmp
+    
     # my kernel build folder..
     exclude /root/mod
+    
+    # pacman cache
+    exclude /var/cache/pacman
+    
     include /
 
 这里（匹配顺序要求）exclude和include不能反，swap是交换分区的文件，如果你的交换分区路径不一样记得修改。
