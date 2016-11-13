@@ -23,7 +23,7 @@ Common sense:
 Convenience:
 
 * `pyflakes` + `pep8` + `pylint`(and more) to check your code, a [pre-commit hook](https://www.stavros.io/posts/more-pep8-git-hooks/) could be overkill, but integrating them with CI should be trivial.
-* Meta programming: `jsondatabase` shows good use of __get__ https://github.com/gunthercox/jsondb/blob/master/jsondb/db.py#L139 (though can't really appreciate this https://github.com/gunthercox/jsondb/blob/master/jsondb/db.py#L52 silver-bullet method)
+* Meta programming: [jsondatabase](https://github.com/gunthercox/jsondb/blob/master/jsondb/db.py#L139) shows good use of `__get__`(though can't really appreciate this [silver bullet](https://github.com/gunthercox/jsondb/blob/master/jsondb/db.py#L52) method)
 
 
 Traps/gotchas:
