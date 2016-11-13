@@ -101,3 +101,6 @@ html
 FAT32
 tmux
 tmux's
+virtualenv
+pre-commit
+_profiler
