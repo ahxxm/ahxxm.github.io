@@ -34,7 +34,7 @@ Traps/gotchas:
 
 Debug:
 
-* `logging` module is your friend, read [official document](https://docs.python.org/3/library/logging.html) and some [best practices](https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/): proper logging level, ` __name__` as logger name ...
+* `logging` module is your friend, read [official document](https://docs.python.org/3/library/logging.html) and some [best practices](https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/): proper logging level, `__name__` as logger name ...
 * Simple script can be debugged using `ipdb` or `pudb`.
 * [line_profiler](https://github.com/rkern/line_profiler) is by far the most intuitive profiling tool I've used.
 * [This article](https://blog.ionelmc.ro/2013/06/05/python-debugging-tools/) introduced segfaults handler, monitoring and more debugging tools.
