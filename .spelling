@@ -104,3 +104,4 @@ tmux's
 virtualenv
 pre-commit
 _profiler
+jsondatabase
