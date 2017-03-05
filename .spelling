@@ -105,3 +105,5 @@ virtualenv
 pre-commit
 _profiler
 jsondatabase
+Pythonic
+pythonic

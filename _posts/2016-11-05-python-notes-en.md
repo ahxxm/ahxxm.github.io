@@ -24,7 +24,7 @@ Convenience:
 
 * `pyflakes` + `pep8` + `pylint`(and more) to check your code, a [pre-commit hook](https://www.stavros.io/posts/more-pep8-git-hooks/) could be overkill, but integrating them with CI should be trivial.
 * Meta programming: [jsondatabase](https://github.com/gunthercox/jsondb/blob/master/jsondb/db.py#L139) shows good use of `__get__`(though can't really appreciate this [silver bullet](https://github.com/gunthercox/jsondb/blob/master/jsondb/db.py#L52) method)
-* [Pythonic code review](https://access.redhat.com/blogs/766093/posts/2802001) introduces pythonic/convinient syntax like `namedtuple`, and more importantly, what to focus when reviewing code.
+* [Pythonic code review](https://access.redhat.com/blogs/766093/posts/2802001) introduces pythonic/convenient syntax like `namedtuple`, and more importantly, what to focus when reviewing code.
 
 
 Traps/gotchas:
