@@ -4,7 +4,7 @@ author: ahxxm
 layout: post
 permalink: /109.moew/
 categories:
-  - 不要问我为什么写这个
+  - PDF
 ---
 环境：OSX 10.10.2 + Homebrew
 
@@ -54,3 +54,4 @@ categories:
 <a href="http://www.imagemagick.org/script/command-line-options.php" target="_blank">ImageMagick Docs</a>
 
 <a href="https://twitter.com/woshisanhu/status/568259264583569408" target="_blank">@woshisanhu</a>
+
