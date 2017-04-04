@@ -23,8 +23,6 @@ Explain params:
 - -jpg 90: compress output file
 - -mode fw: fit width
 
-Works better for 
-
 ### Optional Options
 
 - -n: **disables** text reflow, good for lame pdf reader like `Preview.app`. Smaller output size because "the source PDF's native content is used along with additional PDF instructions to translate, scale, and crop the source content".
