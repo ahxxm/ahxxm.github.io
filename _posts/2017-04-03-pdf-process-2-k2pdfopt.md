@@ -25,7 +25,7 @@ Explain params:
 
 ### Optional Options
 
-- -n: **disables** text reflow, good for lame pdf reader like `Preview.app`. Smaller output size because "the source PDF's native content is used along with additional PDF instructions to translate, scale, and crop the source content".
+- -n: **disables** text reflow, good for lame pdf reader like `Preview.app`, **not** for mobile devices. Smaller output size because "the source PDF's native content is used along with additional PDF instructions to translate, scale, and crop the source content".
 
 
 
