@@ -18,4 +18,4 @@ Steps:
 - CloudFlare: delete A record of root domain, CNAME it to Netlify-generated domain
 - [Global Ping](http://ping.chinaz.com/): verify previous record was populated
 
-This blog now gets global CDN and losts access log -- which I haven't spare any time to audit.
+This blog now gets global CDN and loses access log -- which I haven't spare any time to audit.
