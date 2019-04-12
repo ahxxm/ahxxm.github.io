@@ -18,4 +18,12 @@ Steps:
 - CloudFlare: delete A record of root domain, CNAME it to Netlify-generated domain
 - [Global Ping](http://ping.chinaz.com/): verify previous record was populated
 
-This blog now gets global CDN and loses access log -- which I haven't spare any time to audit.
+This blog now gets global CDN and loses access log -- which I haven't spare any time to audit yet.
+
+Update 2019-04-12: Came up with a dirty log solution using Google Cloud Stackdriver and Netlify Function(AWS lambda backed):
+
+- add build env: project url as `GO_IMPORT_PATH`, 32 byte key as `KEY` to decode Google Cloud credentials json in main.go
+- extend build command: `go get ./... && sed -i "s/todo-32-byte-key-here/$KEY/g" main.go && mkdir -p logger && go build -o logger/logger ./... && jekyll build`
+- make client access logger lambda url
+
+Stackdriver provides exuberant quota for free: "First 50 GiB per project/per month".
