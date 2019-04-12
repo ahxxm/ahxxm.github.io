@@ -63,7 +63,7 @@ func init() {
 		hostname = h
 	}
 
-	// Logger Client
+	// Logger
 	ctx := context.Background()
 	credjson = decode(cred)
 	keyopt := option.WithCredentialsJSON([]byte(credjson))
@@ -93,7 +93,7 @@ func handle(ctx context.Context, e events.APIGatewayProxyRequest) error {
 }
 
 func main() {
-	// to encrypt, fmt.Println(encrypt(somejsonliteral)) here
+	// to encrypt, `fmt.Println(encrypt(somejsonliteral))` here
 	log.Printf("Logger started from host %v", hostname)
 	lambda.Start(handle)
 }

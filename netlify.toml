@@ -1,7 +1,0 @@
-[Settings]
-ID = "ahxxm-blog"
-
-[Build]
-  command = "sed -i s|$todo-32-byte-key-here|KEY|g logger/main.go && jekyll build"
-  publish = "_site"
-  functions = "logger/"
