@@ -26,4 +26,4 @@ Update 2019-04-12: Came up with a dirty log solution using Google Cloud Stackdri
 - extend build command: `go get ./... && sed -i "s/todo-32-byte-key-here/$KEY/g" main.go && mkdir -p logger && go build -o logger/logger ./... && jekyll build`
 - make client access logger lambda url
 
-Stackdriver provies exuberant quota for free: "First 50 GiB per project/per month".
+Stackdriver provides exuberant quota for free: "First 50 GiB per project/per month".
