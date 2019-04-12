@@ -27,7 +27,7 @@ var (
 	// When decoded the key should be 16 bytes (AES-128) or 32 (AES-256).
 	aesgcm    cipher.AEAD
 	nonce     = []byte{100, 169, 67, 62, 174, 124, 204, 238, 226, 252, 14, 218}
-	decodekey = "$todo-32-byte-key-here"
+	decodekey = "todo-32-byte-key-here"
 )
 
 // modified from: https://golang.org/src/crypto/cipher/example_test.go
@@ -88,7 +88,7 @@ func writeEntry(data interface{}) {
 
 func handle(ctx context.Context, e events.APIGatewayProxyRequest) error {
 	// TODO: select keys from e
-	// writeEntry(e)
+	writeEntry(e)
 	return nil
 }
 
