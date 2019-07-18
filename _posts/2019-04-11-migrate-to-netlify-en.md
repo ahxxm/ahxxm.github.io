@@ -1,5 +1,5 @@
 ---
-title: Blog Migrated to Netlify
+title: Blog Migrated to AWS Amplify
 author: ahxxm
 layout: post
 permalink: /157.moew/
@@ -20,10 +20,28 @@ Steps:
 
 This blog now gets global CDN and loses access log -- which I haven't spare any time to audit yet.
 
-Update 2019-04-12: Came up with a dirty log solution using Google Cloud Stackdriver and Netlify Function(AWS lambda backed):
+
+### Dirty log solution(suspended)
+
+Update 2019-04-12
+
+Came up with a dirty log solution using Google Cloud Stackdriver and Netlify Function(AWS lambda backed):
 
 - add build env: project url as `GO_IMPORT_PATH`, 32 byte key as `KEY` to decode Google Cloud credentials json in main.go
 - extend build command: `go get ./... && sed -i "s/todo-32-byte-key-here/$KEY/g" main.go && mkdir -p logger && go build -o logger/logger ./... && jekyll build`
 - make client access logger lambda url
 
 Stackdriver provides exuberant quota for free: "First 50 GiB per project/per month".
+
+### AWS Amplify
+
+Updated 2019-07-17
+
+CloudFront should be faster than DigitalOcean(I guess).
+
+Transition is quite smooth:
+
+- link github and add project, it generates build and deploy
+- verify domain in Amplify console(including change CNAME to a CloudFront domain)
+- wait for DNS propagation
+

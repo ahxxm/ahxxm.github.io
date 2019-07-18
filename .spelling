@@ -132,3 +132,7 @@ env
 url
 json
 main.go
+CloudFront
+DigitalOcean
+github
+DNS
