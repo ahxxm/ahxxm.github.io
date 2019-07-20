@@ -1,5 +1,5 @@
 ---
-title: Blog Migrated to AWS Amplify
+title: Blog Migrated to Netlify
 author: ahxxm
 layout: post
 permalink: /157.moew/
@@ -33,9 +33,9 @@ Came up with a dirty log solution using Google Cloud Stackdriver and Netlify Fun
 
 Stackdriver provides exuberant quota for free: "First 50 GiB per project/per month".
 
-### AWS Amplify
+### AWS Amplify(NOT USED)
 
-Updated 2019-07-17
+Updated 2019-07-20
 
 CloudFront should be faster than DigitalOcean(I guess).
 
@@ -45,3 +45,4 @@ Transition is quite smooth:
 - verify domain in Amplify console(including change CNAME to a CloudFront domain)
 - wait for DNS propagation
 
+**But** AWS requires full access to all my git repositories..
