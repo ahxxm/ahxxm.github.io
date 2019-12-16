@@ -1,5 +1,5 @@
 ---
-title: Advent of Code 2019 Writeup -- Clojure
+title: Advent of Code 2019 Writeup(Day 1-4) -- Clojure
 author: ahxxm
 layout: post
 permalink: /161.moew/
@@ -10,6 +10,8 @@ categories:
 [Advent of Code](https://adventofcode.com/2019/about) is a set of *small programming puzzles*, like [Project-Euler](https://projecteuler.net) and [CodeJam](https://codingcompetitions.withgoogle.com/codejam).
 
 <!--more-->
+
+But questions after day 5 are just too long to read.
 
 ## Day 1
 
@@ -151,7 +153,6 @@ This one is quite longer..
 
 ```Clojure
 
-;; a
 (defn valid-pass
   [num]
   (let [incr (atom true)
