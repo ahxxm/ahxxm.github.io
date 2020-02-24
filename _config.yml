@@ -18,3 +18,5 @@ github_username:  ahxxm
 
 # Build settings
 markdown: kramdown
+sass:
+  style: compressed
