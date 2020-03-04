@@ -94,23 +94,23 @@ tab进入编辑模式，Alt+J 将三角面转为四边面，然后Ctrl+V，Remov
 
 左侧T key Panel->Object Tools->Shading->Smooth 平滑着色
 
-<img class="alignnone" src="https://raw.githubusercontent.com/ahxxm/ahxxm.github.io/master/images/eve/1.png" alt="" width="143" height="270" />
+<img class="alignnone" src="/images/eve/1.png" alt="" width="143" height="270" />
 
 右侧N key panel->display->shading改成GLSL
 
-<img class="alignnone" src="https://raw.githubusercontent.com/ahxxm/ahxxm.github.io/master/images/eve/2.png" alt="" width="159" height="267" />
+<img class="alignnone" src="/images/eve/2.png" alt="" width="159" height="267" />
 
 左下Object mode/Edit mode旁边有个按钮，Shading从Rendered改成Texture。
 
-<img class="alignnone" src="https://raw.githubusercontent.com/ahxxm/ahxxm.github.io/master/images/eve/3.png" alt="" width="481" height="168" />
+<img class="alignnone" src="/images/eve/3.png" alt="" width="481" height="168" />
 
 选中，右边有个material tab，点进去，新增Incursus，删掉原来的，然后tab进入编辑模式，a选中所有，点assign。
 
-<img class="alignnone" src="https://raw.githubusercontent.com/ahxxm/ahxxm.github.io/master/images/eve/4.png" alt="" width="346" height="284" />
+<img class="alignnone" src="/images/eve/4.png" alt="" width="346" height="284" />
 
 ### 材质！ （参数设置的原则就俩个字：好看，所以在能看的基础上随意调整吧。）
 
-<img class="alignnone" src="https://raw.githubusercontent.com/ahxxm/ahxxm.github.io/master/images/eve/5.png" alt="" width="346" height="236" />
+<img class="alignnone" src="/images/eve/5.png" alt="" width="346" height="236" />
 
 ### diffuse
 
@@ -124,7 +124,7 @@ Influence-> Diffuse-> Color:on
 
              -> Specular -> Hardness:on （可选）
 
-<img class="alignnone" src="https://raw.githubusercontent.com/ahxxm/ahxxm.github.io/master/images/eve/6.png" alt="" width="407" height="199" />
+<img class="alignnone" src="/images/eve/6.png" alt="" width="407" height="199" />
 
 这里进入UV Editing，tab+a选中，左边N key Panel->Display，点Normalized，下面的Cursor Location中x=0.5 y=0.5 ，然后S,Y,-1+Enter 将UV坐标沿X轴翻转。
 
@@ -169,6 +169,6 @@ Influence-> Diffuse-> Color:on
 
 *Incursus: o/*
 
-<img class="alignnone" src="https://raw.githubusercontent.com/ahxxm/ahxxm.github.io/master/images/eve/incursus1.png">
+<img class="alignnone" src="/images/eve/incursus1.png">
 
-<img class="alignnone" src="https://raw.githubusercontent.com/ahxxm/ahxxm.github.io/master/images/eve/incursus2.png">
+<img class="alignnone" src="/images/eve/incursus2.png">
