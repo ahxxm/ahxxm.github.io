@@ -20,3 +20,5 @@ github_username:  ahxxm
 markdown: kramdown
 sass:
   style: compressed
+
+exclude: [vendor, Gemfile*, main.go, README.md] 
