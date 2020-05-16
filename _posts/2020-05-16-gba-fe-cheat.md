@@ -115,57 +115,57 @@ def rngok(result):
 
 ```lua
 while true do
-    filter = 1
-    local nsim = 20
-    rngs = rngsim(503)
-    for i = 1, nsim do
-        gui.text(228, 8*(i-1), string.format("%3d", rngs[i]/655.36))
-    end
-    --gui.text(0,0,"Filter Mode: ")
+    filter = 1
+    local nsim = 20
+    rngs = rngsim(503)
+    for i = 1, nsim do
+        gui.text(228, 8*(i-1), string.format("%3d", rngs[i]/655.36))
+    end
+    --gui.text(0,0,"Filter Mode: ")
 
-    c = input.get()
-    -- M: rng for mine, N: aNother(enemy)
-    -- write rng base to control
-    local rngbase = 0x03000000
-    if c.M then
-        memory.writeword(rngbase, 1)
-        memory.writeword(rngbase+2, 1)
-        memory.writeword(rngbase+4, 32)
-    elseif c.N then
-        -- reset
-        math.randomseed(os.clock() * 1000)
-        memory.writeword(rngbase, math.random(1, 65535))
-        memory.writeword(rngbase+2, math.random(1, 65535))
-        memory.writeword(rngbase+4, math.random(1, 65535))
-    end
+    c = input.get()
+    -- M: rng for mine, N: aNother(enemy)
+    -- write rng base to control
+    local rngbase = 0x03000000
+    if c.M then
+        memory.writeword(rngbase, 1)
+        memory.writeword(rngbase+2, 1)
+        memory.writeword(rngbase+4, 32)
+    elseif c.N then
+        -- reset
+        math.randomseed(os.clock() * 1000)
+        memory.writeword(rngbase, math.random(1, 65535))
+        memory.writeword(rngbase+2, math.random(1, 65535))
+        memory.writeword(rngbase+4, math.random(1, 65535))
+    end
 
-    for i = 1, 10, 1 do
-        --gui.text(0,8+(i*8),rn[i])
-        --gui.text(20,8+(i*8),op[i])
-        if hit[i] == true then
-            --gui.text(40,8+(i*8),"<- Hit")
-        end
-    end
-    if rn[1] ~= "" and inputs == 0 then
-        dis = emptyarray(dis,3)
-        compareRN()
-    end
-    n = input.get()
+    for i = 1, 10, 1 do
+        --gui.text(0,8+(i*8),rn[i])
+        --gui.text(20,8+(i*8),op[i])
+        if hit[i] == true then
+            --gui.text(40,8+(i*8),"<- Hit")
+        end
+    end
+    if rn[1] ~= "" and inputs == 0 then
+        dis = emptyarray(dis,3)
+        compareRN()
+    end
+    n = input.get()
 
-    -- just to show it's working
-    if rn[1] ~= "" then
-        if dis[1] == "" then
-            gui.text(0,104,"Distance: ---")
-        elseif dis[1] ~= "" and dis[2] == "" then
-            gui.text(0,104,"Distance: " .. dis[1])
-        elseif dis[1] ~= "" and dis[2] ~= "" and dis[3] == "" then
-            gui.text(0,104,string.format("Distance: %d - %d",dis[1],dis[2]))
-        else
+    -- just to show it's working
+    if rn[1] ~= "" then
+        if dis[1] == "" then
+            gui.text(0,104,"Distance: ---")
+        elseif dis[1] ~= "" and dis[2] == "" then
+            gui.text(0,104,"Distance: " .. dis[1])
+        elseif dis[1] ~= "" and dis[2] ~= "" and dis[3] == "" then
+            gui.text(0,104,string.format("Distance: %d - %d",dis[1],dis[2]))
+        else
 
-            gui.text(0,104,string.format("Distance: %d - %d - %d",dis[1],dis[2],dis[3]))
+            gui.text(0,104,string.format("Distance: %d - %d - %d",dis[1],dis[2],dis[3]))
 
-        end
-    end
-    emu.frameadvance()
+        end
+    end
+    emu.frameadvance()
 end
 ```
