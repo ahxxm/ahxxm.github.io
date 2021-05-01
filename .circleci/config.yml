@@ -1,0 +1,16 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.3.0
+
+jobs:
+  check:
+    executor: node/default
+    steps:
+      - checkout
+      - run: npm install -g markdown-spellcheck
+      - run: mdspell "_posts/*-en.md" -r --en-us --ignore-numbers
+
+workflows:
+  spell-check:
+    jobs:
+      - check
