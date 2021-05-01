@@ -7,7 +7,7 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - run: npm install -g markdown-spellcheck
+      - run: sudo npm install -g markdown-spellcheck
       - run: mdspell "_posts/*-en.md" -r --en-us --ignore-numbers
 
 workflows:
