@@ -97,6 +97,8 @@ Update: 根据[这篇博文](http://myers.io/2015/10/22/1password-leaks-your-dat
 
 至于 Lastpass 在 Android 上能根据当前 App 自动找到并弹出相关密码供你选择这种事情我觉得还是不要乱说，毕竟 iOS QQ 目前连粘贴密码都不支持。
 
+Update 2021-05：密码管理器换成了Keepass，桌面端用[KeepassXC](https://keepassxc.org/)，手机用[TinyKeePass](https://github.com/sorz/TinyKeePass)，和Lastpass近年定价没太大关系，是觉得同步需求比较低频和单向，桌面端改完数据库手动或者用Syncthing同步给手机就行，一个月不同步也几乎不影响使用。
+
 ## 额外的话
 
 公共 WiFi 下记得连个**开了加密**的 VPN 或者全局 Shadowsocks，Chrome 安装 HTTPS Everywhere，人离开电脑就加上密码，不要用国产越狱……
