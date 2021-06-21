@@ -44,7 +44,7 @@ SPF record is [deprecated](https://docs.microsoft.com/en-us/answers/questions/38
 
 ## SSL
 
-The server [currently](https://docker-mailserver.github.io/docker-mailserver/edge/config/security/ssl/#caddy) **only supports RSA certificates**, but caddy gets EC ones by default.
+The server [currently](https://docker-mailserver.github.io/docker-mailserver/edge/config/security/ssl/#caddy) **only supports RSA certificates**, but `caddy` gets EC ones by default.
 
 Assuming you have valid certificates, mount them into container by appending to `docker-compose.yml::volumes`:
 
