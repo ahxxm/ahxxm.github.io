@@ -13,7 +13,6 @@ description: > # this means to ignore newlines until "baseurl:" .. description i
     NaN
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ahxxm.com" # the base hostname & protocol for your site
-twitter_username: ahxxm
 github_username:  ahxxm
 
 # Build settings
