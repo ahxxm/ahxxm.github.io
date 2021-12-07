@@ -37,7 +37,7 @@ This blog now gets global CDN and loses access log -- which I haven't spared any
 
 Back then SSL certificates were not free, Netlify was out but I don't know, nginx required [linking](https://github.com/ahxxm/base/blob/master/nginx/nginx.sh#L22) with `LibreSSL` to support `CHACHA20_POLY1305`, the "Continuous Deployment" is simply `docker-compose build && docker-compose up -d --remove-orphans`.
 
-I had some fun getting an A+ in [Qualys SSL Labs](https://www.ssllabs.com/ssltest/), the efforts resulted in about 100 lines of nginx configuration files.
+I had some fun getting an A+ in [SSL Labs](https://www.ssllabs.com/ssltest/), the efforts resulted in about 100 lines of nginx configuration files.
 
 <img class="alignnone" src="/images/blog/blog-logs.jpg" alt="mostly web crawlers"/>
 
