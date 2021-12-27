@@ -13,11 +13,11 @@ I used Clojure because it is a practical language: expressive, composable, fun t
 
 <!--more-->
 
-Preliminary modeling is assumed, the writeup will focus on my own findings: what function makes code cleaner, how to generalize a
+Preliminary modeling is assumed, the writeup will focus on my findings: functions to make the code cleaner, proper tools to solve the problem, etc.
 
 ## Day 1
 
-Warm up puzzle.
+Warm-up puzzle.
 
 ```Clojure
 ;; lein projects come with `resources` directory, slurp makes REPL clean
@@ -65,7 +65,7 @@ What if we have more than 2 Robo-Santa?
 (take-nth 2 [1 2 3 4 5]) => (1 3 5)
 (take-nth 2 (rest [1 2 3 4 5])) => (2 4)
 
-;; Euclidean coordinates
+;; move along Euclidean coordinates
 (mapv + [0 1] [99 99]) => [99 100]
 ```
 
@@ -123,3 +123,323 @@ Combine comprehension and anonymous function:
   (let [v (get-in @m l)]
     (swap! m assoc-in l (f v))))
 ```
+
+## Day 7
+
+Circuit building feels like Breadth-First-Search:
+
+- loop over lines
+- if the current line's output can be evaluated, record the value; else the line is to-be-evaluated
+- recur with to-be-evaluated lines, until nothing left(or stucked)
+
+Parse line into "registry names" and functions then BFS.
+
+```clojure
+(defn parse-wire
+  [splits]
+  (let [[op0 op1 op2] splits] ;; only destructure the first 3
+    (cond
+      (= (count splits) 3) [op0 nil (fn [x1 _] x1)] ;; {in, 123} -> output
+      (= op0 "NOT") [op1 op1 (fn [x1 _] (bit-not x1))]  ;; unary op: NOT d -> a
+      (= op1 "OR") [op0 op2 (fn [x1 x2] (bit-or x1 x2))] ;; binary ops
+      (= op1 "AND") [op0 op2 (fn [x1 x2] (bit-and x1 x2))]
+      (= op1 "LSHIFT") [op0 op2 (fn [x1 x2] (mod (bit-shift-left x1 x2) 16rFFFF))]
+      (= op1 "RSHIFT") [op0 op2 (fn [x1 x2] (mod (bit-shift-right x1 x2) 16rFFFF))])))
+
+;; to distinguish registry name and number literal, dangerous but useful
+(number? (read-string "a")) => false
+(number? (read-string "1")) => true
+```
+
+## Day 9
+
+Given that:
+
+- every point has exactly one route to any other point
+- "cost" of A->B and B->A are equal
+- start from any point
+- search space is still small enough
+
+Just find all costs and point names, calculate costs of all [permutation](https://github.com/clojure/math.combinatorics) and find min/max.
+
+```clojure
+(defn calc-dist
+  [dm coll] ;; distance-map, city names
+  (reduce +
+  (for [r (partition 2 1 coll)]
+    (dm r))))
+
+;; thread-last macro ->> is very expressive
+(let [[places dm] (build-dist)
+      perms (permutations places)]
+  (->> perms
+       (map (partial calc-dist dm))
+       (apply max)))
+```
+
+## Day 10
+
+`partition-by`
+
+```clojure
+(partition-by identity [1 1 1 2 2 1]) => ((1 1 1) (2 2) (1))
+```
+
+## Day 12
+
+Recursion, parse input json into map using [cheshire](https://github.com/dakrone/cheshire) `(parse-string i12 true)`:
+
+```clojure
+;; part 1
+(->> (re-seq #"-?\d+" i12)
+     (map bigdec)
+     (reduce +))
+
+(defn calc-sum
+  [m]
+  (cond
+    (or (nil? m) (string? m))
+    0
+
+    (or (decimal? m) (integer? m))
+    (bigdec m)
+
+    (map? m)
+    (if ((into #{} (vals m)) "red")
+      0
+      (reduce + (map calc-sum (vals m))))
+
+    :whatevercoll ;; "else" in your favourite form
+    (reduce + (map calc-sum m))))
+```
+
+## Day 13
+
+After "you" joined the table, the optimal happiness decreased, which makes sense.
+
+Just like Day 9, but the cost is a sum of A->B and B->A, it can be negative as well.
+
+## Day 14
+
+Compose functions and data:
+
+- distance(speed, battery, rest, time), for part 1
+- distance over time(M-athletes * N-seconds) matrix
+- for each second, find lead distance(maximum number), increment the corresponding counters(index of leaders -> lead count)
+- find max value in counter
+
+## Day 15
+
+Think of 3/8 calories as 2 groups,
+
+- a+b=100, 3a+8b=500
+- `60*3+40*8`
+
+The rest is still comprehension.
+
+```clojure
+;; transpose to mapv * and sum
+(apply mapv vector [[1 2 3] [4 5 6]]) => [[1 4] [2 5] [3 6]]
+(reduce + (mapv * [a b c d] x))
+
+```
+
+## Day 16
+
+Laziness and compare function,
+
+```clojure
+(let [su {"children" "3" "cats" "7" "samoyeds" "2"
+          "pomeranians" "3" "akitas" "0" "vizslas" "0"
+          "goldfish" "5" "trees" "3" "cars" "2" "perfumes" "1"}]
+  (defn kv-comp1 [x] (= (second x) (su (first x))))
+  (defn kv-comp2
+    [x]
+    (let [[k v] x]
+      (cond
+        (= k "cats") (> (bigdec v) 7)
+        (= k "trees") (> (bigdec v) 3)
+        (= k "pomeranians") (< (bigdec v) 3)
+        (= k "goldfish") (< (bigdec v) 5)
+
+        :others
+        (kv-comp1 x)))))
+
+;; mismatch? accepts compare function, returns true on mismatch, aunt index on all pass
+;; (if (some false? (map kv-comp2 kvs)) true aunt-idx)
+(->> (for [l ls] (mismatch? l kv-comp2))
+     (drop-while true?)
+     (first))
+```
+
+## Day 17
+
+Is this a [0-1 knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem#0-1_knapsack_problem)?
+
+```clojure
+(def bss (atom [])) ;; ways to take bottles
+
+(defn-memo calc-water
+  [k ws bs] ;; k target value, ws water bottles left, bs bottles taken
+  (let [[f & r] ws]
+    (when (= k 0)
+      (swap! bss conj bs))
+    (if (= k 0) ;; exactly k
+      1
+      (if (nil? f) ;; failed to add to k, does not count
+        0
+        (if (> f k) ;; take next one or not?
+          (calc-water k r bs) ;; this is a "tail position" to recur
+          (+ (calc-water (- k f) r (conj bs f)) (calc-water k r bs)))))))
+
+;; part 2: least bottles to 150
+(let [mm (apply min (map count @bss))]
+  (->> @bss
+       (filter #(= mm (count %)))
+       (count)))
+```
+
+Some caveats about recursion and memoize:
+
+- `recur` from [tail position](https://clojure.org/about/functional_programming#_recursive_looping) to "constant-space recursive looping by rebinding and jumping to the nearest enclosing loop or function frame"(to avoid stackoverflow)
+- `calc-water` is deterministic, its calculation can be [cached](https://github.com/richhickey/clojure-contrib/blob/1c805bd0e515ea57028721ea54e6db4b0c791e20/src/main/clojure/clojure/contrib/def.clj#L143)
+- [core.memoize](https://github.com/clojure/core.memoize) for concurrent use, "unlike the built-in memoize function, ensures that in the case of concurrent calls with the same arguments, the memoized function is only invoked once"
+
+## Day 19
+
+[Analytical solution](https://www.reddit.com/r/adventofcode/comments/3xflz8/comment/cy4etju/) of part 2 worths reading.
+
+Then I wrote a greedy one:
+
+- find the longest replace-able string, replace once, increment counter
+- if not "e" then recur
+- return counter
+
+## Day 20
+
+Part 1 is to find the least integer, sum of whose factors(including 1 and itself) * 10 >= itself.
+
+Part 2 is about pruning:
+
+- the last house to reach 29000000 is `(quot 29000000 11) => 2636363`
+- the irrelevant houses to ignore `(-> 29000000 (/ 50) (/ 11) int) => 52727`
+
+```clojure
+(let [v (atom {})]
+  (loop [i 1]
+    (doall ;; send presents to houses
+     (for [h (map #(* i %) (take 50 (iterate inc 1)))
+           :when (<= 52000 h 2640000)]
+       (swap! v assoc h (+ (* 11 i) (or (@v h) 0)))))
+
+    (if (> (or (@v i) 0) 29000000)
+      i
+      (recur (inc i)))))
+```
+
+## Day 21
+
+"What is the most amount of gold you can spend and still lose the fight?"
+
+Permutation of choices, where weapons are required, 0-1 armor, 0-2 rings:
+
+- append `[0 0 0]`(cost atk def) to armor and rings
+- additional index for the optional second ring, prevent choosing the same valid ring
+
+```clojure
+(defn win-21?
+  [a1 d1 a2 d2]
+  (let [-d1 (max 1 (- a1 d2)) ;; minimal damage 1
+        -d2 (max 1 (- a2 d1))]
+    ;; because user attack first
+    (>= -d1 -d2)))
+
+;; for part 1, apply min, change to if win, and 0M->10000M
+(apply max
+(for [i1 (range 0 5)
+      i2 (range 0 6)
+      i3 (range 0 7)
+      i4 (range 0 7)]
+  (let [[cost atk def] (mapv + (nth weapons i1)
+                             (nth armors i2)
+                             (nth rings i3)
+                             (if (and (= i3 i4) (not= i3 6))
+                               [0 0 0] (nth rings i4)))]
+    (if-not (win-21? atk def 8 2)
+      cost 0M))))
+```
+
+## Day 22
+
+Invite your friend to solve this puzzle, ask them about Cyberpunk 2077 afterward.
+
+There are several states to keep track of:
+
+- ours: HP, def, mana
+- boss's: HP
+- 3 buffs: turns left
+- stop signal for path pruning: if this sequence of spells will result in {out of mana|re-cast buff|no spell provided before game end}, then there's no need to explore further
+
+Intuitively one might want to apply DoT, cast mana regenerating, increase defense, before casting actual damage spells. But the boss's attack is high, intuition does not lead to a conclusion directly.
+
+```clojure
+(defn explore-spells
+  [s]
+  (let [spells (map str s)
+        [win? stop?] (game-win? spells)]
+    (if win?
+      [true s] ;; when win just return the current spells
+      (if stop? ;; if early terminated, then its "univisited paths" is empty
+        [false []]
+        [false (map #(str s %) "RSPDM")]))))
+
+(defn path->cost
+  [p]
+  (let [costs {"M" 53 "D" 73 "S" 113 "P" 173 "R" 229}
+        spells (map str p)]
+    (reduce + (map costs spells))))
+
+(loop [init ["R" "S" "P" "D" "M"]]
+  (let [results (map explore-spells init)
+        win? (some true? (map first results))
+        explore (mapcat second results)]
+    (if-not win?
+      (recur explore)
+      (let [paths (map second (filter #(true? (first %)) results))
+            costs (map path->cost paths)]
+        (apply min costs)))))
+```
+
+`game-win?` can be implemented functionally, but I used several atoms and a large loop instead:
+
+- pre-fight buff effects(add player's dot here for part 2)
+- check hp
+- player tries to cast a spell, path pruning checks here || boss attacks
+- check hp
+- if the game ends or spells are invalid, return [win? stop?], else recur into the opponent's turn
+
+The good thing about BFS is that, when modeled properly, the search results are ~~also intuitively~~ minimal costs.
+
+## Day 23
+
+An example of optimized recursion, naively calc-23 will possibly cause stackoverflow.
+
+```clojure
+(defn calc-23
+  [is i a b] ;; instructions, pointer index, a b value
+  (if (>= i (count is))
+    [a b]
+    (recur is new-i new-a new-b)))
+```
+
+Use [condp](https://clojuredocs.org/clojure.core/condp) or [core.match](https://github.com/clojure/core.match) to simplify calculation of new i,a,b values.
+
+## Day 25
+
+The first row is [Triangular Number](https://en.wikipedia.org/wiki/Triangular_number):
+
+- imagine a virtual diagonal line from input [a b] to point p [x 0] in first row, where x=a+b
+- k=x*(x+1)/2
+- n=k-b, loop n times for final module result
+
+Be careful with offset-by-one errors.
