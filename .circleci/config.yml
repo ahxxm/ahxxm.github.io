@@ -9,7 +9,8 @@ jobs:
       - checkout
       - run: sudo npm install -g markdown-spellcheck
       - run: mdspell "_posts/*-en.md" -r --en-us --ignore-numbers
-      - run: [[ $(grep ".moew" **/*.md | grep -Eo "permalink.*" | uniq -cd | wc -l) -eq 0 ]] && echo "ok" || exit 2
+      - run: |
+          [[ $(grep ".moew" **/*.md | grep -Eo "permalink.*" | uniq -cd | wc -l) -eq 0 ]] && echo "ok" || exit 2
 
 workflows:
   spell-check:
