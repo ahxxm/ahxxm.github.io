@@ -11,7 +11,7 @@ categories:
 
 ## TLDR
 
-```
+```bash
 ./k2pdfopt -as -dev kp2 -jpg 90 -mode fw [filename]
 [press ENTER and wait]
 ```
@@ -26,7 +26,3 @@ Explain params:
 ### Optional Options
 
 - -n: **disables** text reflow, good for lame pdf reader like `Preview.app`, **not** for mobile devices. Smaller output size because "the source PDF's native content is used along with additional PDF instructions to translate, scale, and crop the source content".
-
-
-
-
