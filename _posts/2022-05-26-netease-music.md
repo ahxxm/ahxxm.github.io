@@ -40,7 +40,7 @@ smali_classes9/com/netease/cloudmusic/music/biz/voice/player/share/g.smali
       ks (javax.crypto.spec.SecretKeySpec. (.getBytes key) "AES")
       enc (doto (javax.crypto.Cipher/getInstance "AES") (.init javax.crypto.Cipher/ENCRYPT_MODE ks))
       dec (doto (javax.crypto.Cipher/getInstance "AES") (.init javax.crypto.Cipher/DECRYPT_MODE ks))
-      b64-encoder (.withoutPadding (java.util.Base64/getUrlEncoder)) b64-decoder (java.util.Base64/getUrlDecoder)]
+      b64-encoder (.withoutPadding (java.util.Base64/getUrlEncoder)) b64-decoder (java.util.Base64/getUrlDecoder)] ;; or getDecoder
   [(= uct (->> (.doFinal enc (.getBytes uid "UTF-8"))
                (.encodeToString b64-encoder)))
    (= uid (String.
