@@ -2,7 +2,12 @@
 title: Contact
 author: ahxxm
 layout: page
+permalink: /about
 ---
+
+Actual about: [Hello World](https://ahxxm.com/7.moew/)
+
+## Contact
 
 Find me:
 
