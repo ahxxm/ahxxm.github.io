@@ -14,3 +14,5 @@ permalink: /links
 [A.I.'s Node 13](https://merrick.luois.me/)
 
 [wzyboy's blog](https://wzyboy.im/)
+
+[Idling on Cloud](https://idling.cloud/)
