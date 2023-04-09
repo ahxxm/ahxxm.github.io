@@ -24,13 +24,14 @@ The training process is boringly traditional: collect source data and labels, tr
 
 Since the model needs to express my preferences, all labels are assigned by me, resulting in a small sample size:
 - 4000+ positive: memes, infographics, professional photos(mostly landscape and some animals), a few photos taken with a phone, screenshots
+- ~1000 photos taken by my DSLR, mostly landscape, some animals <!--try not to imply professionalism-->
 - 20000+ negative, intentionally kept since I wanted this experiment: photos(some professional ones, most taken with a phone), screenshots
 
-Almost all photos are not mine, meme and screenshots are too diverse to describe.
+Meme and screenshots are too diverse to describe.
 
 ### Model Justification
 
-There aren't too many options, CLIP limits to 224x224, which was the major blocker of this experiment. I chose `uform-vl-english` because it allows images of arbitrary shapes, and I do not mind if it generates 224x224 thumbnails behind the scene.
+There aren't too many options, CLIP limits to 224x224, which was the major blocker of this experiment. I chose `uform-vl-english` because it allows images of arbitrary shapes, and I do not mind if it generates 224x224 thumbnails [behind the scene](https://github.com/unum-cloud/uform/blob/main/src/uform.py#L362).
 
 Another important factor is their excellent article: [Beating OpenAI CLIP with 100x less data and compute](https://www.unum.cloud/blog/2023-02-20-efficient-multimodality).
 
@@ -123,7 +124,7 @@ There isn't Sigmoid because the loss function `BCEWithLogitsLoss` -- claims to b
 model = ImageBinaryClassifier()
 # sum([x.reshape(-1).shape[0] for x in model.parameters()]) # 10492417 params
 learning_rate = 0.0003
-num_epochs = 12
+num_epochs = 15
 batch_size = 1
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, generator=torch.Generator(device='cuda') if cuda else None)
 
@@ -149,18 +150,21 @@ torch.save(model.state_dict(), MODEL_PATH)
 
 The training finished in 10 minutes using Tesla T4, its output looks like:
 ```
-Epoch 0, total loss 8547.545717411675
-Epoch 1, total loss 2670.76454769721
-Epoch 2, total loss 1643.8740509260024
-Epoch 3, total loss 1031.1236883525044
-Epoch 4, total loss 754.6492507858791
-Epoch 5, total loss 622.5377636950169
-Epoch 6, total loss 512.1065581781929
-Epoch 7, total loss 462.31102013925886
-Epoch 8, total loss 408.4569333245974
-Epoch 9, total loss 374.14776387053985
-Epoch 10, total loss 328.752630356501
-Epoch 11, total loss 293.30091904838196
+Epoch 0, total loss 9449.750139231794
+Epoch 1, total loss 3176.7831058780284
+Epoch 2, total loss 1782.7670029629808
+Epoch 3, total loss 1066.8573923760205
+Epoch 4, total loss 795.308564953793
+Epoch 5, total loss 650.6638346871068
+Epoch 6, total loss 562.0393543641796
+Epoch 7, total loss 489.4068465524059
+Epoch 8, total loss 433.97104152526447
+Epoch 9, total loss 393.40820040911666
+Epoch 10, total loss 360.4532831643036
+Epoch 11, total loss 322.57149341895547
+Epoch 12, total loss 307.90023628154034
+Epoch 13, total loss 269.49978952276723
+Epoch 14, total loss 254.2954651907422
 ```
 
 This specific combination of `learning_rate` and `num_epochs` allowed the total loss to converge, with diminishing returns(and an increasing risk of overfitting?). I've no idea on the optimizer choice, as with `momentum=0.9` the loss looks lower, and `Adam` works fine too.
@@ -210,7 +214,8 @@ saved_model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device('cp
 saved_model = torch.compile(saved_model)
 saved_model.eval()
 
-order_emb = generate_embeddings_for_dir([IMG_PATH])
+IMG_PATH = "/path-to-some-new-images"
+order_emb = generate_embeddings_for_dir(IMG_PATH)
 order_emb["val"] = order_emb["uform_emb"].map(lambda x: float(torch.sigmoid(saved_model(torch.tensor(x)))))
 order_emb.sort_values(by="val", ascending=True).head(10)
 ```
@@ -227,12 +232,13 @@ By the way, [When your binary classification model outputs 0.5](https://twitter.
 ## Thoughts
 
 The good:
-- The model can capture some of my preferences
+- The model can capture some of my preferences on a variety of subjects: meme, screenshot, photography
 - The model can even correct some wrong labels(sometimes)
 - To sort by preferences for the image viwer: sort by the prediction values and "touch" files one by one
 
 The bad:
 - More labels needed: low performing image types, write descriptive filename
+- Trust but verify: The model can also miss my preferences, the full moon picture example above
 
 The ugly, engineering efforts to make it easier to train use:
 - Already some hacks for CPU and GPU
