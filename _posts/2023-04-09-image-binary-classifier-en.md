@@ -40,7 +40,7 @@ Another important factor is their excellent article: [Beating OpenAI CLIP with 1
 The model encodes image and text into a joint embedding of 768 float numbers.
 
 ```python
-# PIL.Image.MAX_IMAGE_PIXELS=None 
+# PIL.Image.MAX_IMAGE_PIXELS=None
 # PIL.Image.DecompressionBombError: Image size (252349376 pixels) exceeds limit of 178956970 pixels, could be decompression bomb DOS attack.
 uf_model = uform.get_model("unum-cloud/uform-vl-english")
 DIMENSION = 768
@@ -234,7 +234,7 @@ By the way, [When your binary classification model outputs 0.5](https://twitter.
 The good:
 - The model can capture some of my preferences on a variety of subjects: meme, screenshot, photography
 - The model can even correct some wrong labels(sometimes)
-- To sort by preferences for the image viwer: sort by the prediction values and "touch" files one by one
+- To sort by preferences for the image viewer: sort by the prediction values and "touch" files one by one
 
 The bad:
 - More labels needed: low performing image types, write descriptive filename
