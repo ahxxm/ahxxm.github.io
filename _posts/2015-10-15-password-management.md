@@ -20,39 +20,39 @@ categories:
   <tr>
     <td valign="top">
     </td>
-    
+
     <td valign="top">
       <span style="color: #000000; font-family: 'PingFang SC'; font-size: small;"><b>有钱</b></span>
     </td>
-    
+
     <td valign="top">
       <span style="color: #000000; font-family: 'PingFang SC'; font-size: small;"><b>无钱</b></span>
     </td>
   </tr>
-  
+
   <tr>
     <td valign="top">
       <span style="color: #000000; font-family: 'PingFang SC'; font-size: small;"><b>有数据</b></span>
     </td>
-    
+
     <td valign="top">
       <span style="color: #000000; font-family: 'PingFang SC'; font-size: small;">要命</span>
     </td>
-    
+
     <td valign="top">
       <span style="color: #000000; font-family: 'PingFang SC'; font-size: small;">麻烦</span>
     </td>
   </tr>
-  
+
   <tr>
     <td valign="top">
       <span style="color: #000000; font-family: 'PingFang SC'; font-size: small;"><b>无数据</b></span>
     </td>
-    
+
     <td valign="top">
       <span style="color: #000000; font-family: 'PingFang SC'; font-size: small;">搞不好要命</span>
     </td>
-    
+
     <td valign="top">
       <span style="color: #000000; font-family: 'PingFang SC'; font-size: small;">爱咋咋</span>
     </td>
@@ -97,7 +97,9 @@ Update: 根据[这篇博文](http://myers.io/2015/10/22/1password-leaks-your-dat
 
 至于 Lastpass 在 Android 上能根据当前 App 自动找到并弹出相关密码供你选择这种事情我觉得还是不要乱说，毕竟 iOS QQ 目前连粘贴密码都不支持。
 
-Update 2021-05：密码管理器换成了Keepass，桌面端用[KeepassXC](https://keepassxc.org/)，手机用[TinyKeePass](https://github.com/sorz/TinyKeePass)，和Lastpass近年定价没太大关系，是觉得同步需求比较低频和单向，桌面端改完数据库手动或者用Syncthing同步给手机就行，一个月不同步也几乎不影响使用。
+**Update 2021-05**：密码管理器换成了Keepass，桌面端用[KeepassXC](https://keepassxc.org/)，手机用[TinyKeePass](https://github.com/sorz/TinyKeePass)，和Lastpass近年定价没太大关系，是觉得同步需求比较低频和单向，桌面端改完数据库手动或者用Syncthing同步给手机就行，一个月不同步也几乎不影响使用。
+
+**Update 2024-08**: 2FA 换成了 [Ente](https://github.com/ente-io/ente), 不需要手机号。
 
 ## 额外的话
 
