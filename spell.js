@@ -9,7 +9,7 @@ function* getMarkdownFiles() {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   
   for (const entry of entries) {
-    if (entry.isFile() && entry.name.endsWith('.md')) {
+    if (entry.isFile() && entry.name.endsWith('-en.md')) {
       yield path.join(dir, entry.name);
     }
   }
