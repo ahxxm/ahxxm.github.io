@@ -1,3 +1,9 @@
+# site
 _site/
 .sass-cache/
 .jekyll-metadata
+
+# spell check
+node_modules/
+package-lock.json
+package.json
