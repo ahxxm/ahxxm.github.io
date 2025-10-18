@@ -25,6 +25,7 @@ body {
     -o-font-feature-settings: "kern" 1;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
+    text-autospace: normal;
 }
 
 
@@ -134,6 +135,7 @@ code {
     border: 1px solid $grey-color-light;
     border-radius: 3px;
     background-color: #f5f5f5;
+    text-autospace: none;
 }
 
 code {
