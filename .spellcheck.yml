@@ -3,10 +3,10 @@ matrix:
     aspell:
       lang: en
       d: en_US
-    # dictionary:
-    #   wordlists:
-    #     - .wordlist.txt
-    #   encoding: utf-8
+    dictionary:
+      wordlists:
+        - .wordlist.txt
+      encoding: utf-8
     pipeline:
       - pyspelling.filters.markdown:
           markdown_extensions:
@@ -16,6 +16,7 @@ matrix:
           ignores:
             - code
             - pre
+      - pyspelling.filters.url:
     sources:
       - '_posts/*-en.md'
     default_encoding: utf-8
