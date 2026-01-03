@@ -1,4 +1,5 @@
 Acronis
+AdminCD
 AHCI
 archlinux
 args
@@ -13,6 +14,7 @@ CDNjs
 certbot
 chroot
 CloudFlare
+Cloudflare
 CNAME
 codebase
 config
@@ -44,6 +46,7 @@ Fn
 fstab
 Gemfile
 GitHub
+Github
 GSuite
 GTX
 hakimel
@@ -69,6 +72,7 @@ Linode
 LLM
 LTS
 LUKS
+luks
 luksipc
 Mailgun
 mailserver
@@ -80,6 +84,7 @@ Netlify
 NetworkManager
 nginx
 NVMe
+nvme
 ok
 OneDrive
 OpenAI
@@ -91,6 +96,7 @@ plaintext
 png
 postfix
 Powertop
+powertop
 pre
 pre-commit
 privkey
