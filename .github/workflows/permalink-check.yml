@@ -1,0 +1,17 @@
+name: Permalink Check
+on: [push, pull_request]
+
+jobs:
+  check-duplicates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check duplicate permalinks
+        run: |
+          count=$(grep -r ".moew" --include="*.md" | grep -Eo "permalink.*" | sort | uniq -cd | wc -l)
+          if [ "$count" -ne 0 ]; then
+            echo "Duplicate permalinks found:"
+            grep -r ".moew" --include="*.md" | grep -Eo "permalink.*" | sort | uniq -cd
+            exit 2
+          fi
+          echo "No duplicate permalinks"
