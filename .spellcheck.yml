@@ -8,12 +8,9 @@ matrix:
     #     - .wordlist.txt
     #   encoding: utf-8
     pipeline:
-      - pyspelling.filters.context:
-          context_visible_first: true
-          delimiters:
-            - open: '^---$'
-              close: '^---$'
       - pyspelling.filters.markdown:
+          markdown_extensions:
+            - meta
       - pyspelling.filters.html:
           comments: false
           ignores:
