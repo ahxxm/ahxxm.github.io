@@ -11,6 +11,7 @@ matrix:
       - pyspelling.filters.markdown:
           markdown_extensions:
             - meta
+            - markdown.extensions.fenced_code
       - pyspelling.filters.html:
           comments: false
           ignores:
