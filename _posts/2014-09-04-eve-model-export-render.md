@@ -90,9 +90,9 @@ file->import，选3ds文件导出模型，以Incursus为例，因为它长得比
 
 选中，r x 90+Enter，绕x轴旋转90度，按S调整大小。
 
-tab进入编辑模式，Alt+J 将三角面转为四边面，然后Ctrl+V，Remove Doubles去除过于接近的顶点。
+tab进入编辑模式，Alt+J将三角面转为四边面，然后Ctrl+V，Remove Doubles去除过于接近的顶点。
 
-左侧T key Panel->Object Tools->Shading->Smooth 平滑着色
+左侧T key Panel->Object Tools->Shading->Smooth平滑着色
 
 <img class="alignnone" src="/images/eve/1.png" alt="" width="143" height="270" />
 
@@ -126,7 +126,7 @@ Influence-> Diffuse-> Color:on
 
 <img class="alignnone" src="/images/eve/6.png" alt="" width="407" height="199" />
 
-这里进入UV Editing，tab+a选中，左边N key Panel->Display，点Normalized，下面的Cursor Location中x=0.5 y=0.5 ，然后S,Y,-1+Enter 将UV坐标沿X轴翻转。
+这里进入UV Editing，tab+a选中，左边N key Panel->Display，点Normalized，下面的Cursor Location中x=0.5 y=0.5 ，然后S,Y,-1+Enter将UV坐标沿X轴翻转。
 
 以下简写
 
